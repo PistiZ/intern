@@ -1,13 +1,5 @@
 package hu.neuron.junior.service.impl.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import hu.neuron.junior.client.api.service.user.UserService;
 import hu.neuron.junior.client.api.vo.UserVo;
 import hu.neuron.junior.core.dao.RoleDao;
@@ -15,44 +7,59 @@ import hu.neuron.junior.core.dao.UserDao;
 import hu.neuron.junior.core.entity.Role;
 import hu.neuron.junior.core.entity.User;
 import hu.neuron.junior.service.mapper.user.UserVoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service("userService")
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class UserServiceImpl implements UserService {
 
-	private static final String ROLE_USER = "ROLE_USER";
+    private static final String ROLE_USER = "ROLE_USER";
 
-	@Autowired
-	UserDao userDao;
+    private final UserDao userDao;
 
-	@Autowired
-	RoleDao roleDao;
+    private final RoleDao roleDao;
 
-	@Override
-	public UserVo findByUsername(String username) {
-		User user = userDao.findByUsername(username);
-		return UserVoMapper.toVo(user);
+    @Autowired
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
+        this.userDao = userDao;
+        this.roleDao = roleDao;
+    }
 
-	}
+    @Override
+    public UserVo findById(Long id) {
+        User user = userDao.findOne(id);
+        return UserVoMapper.toVo(user);
+    }
 
-	@Override
-	public UserVo registrationUser(UserVo userVo) {
-		User user = UserVoMapper.toEntity(userVo);
+    @Override
+    public UserVo findByUsername(String username) {
+        User user = userDao.findByUsername(username);
+        return UserVoMapper.toVo(user);
+    }
 
-		List<Role> roles = new ArrayList<>();
+    @Override
+    public UserVo registerUser(UserVo userVo) {
+        User user = UserVoMapper.toEntity(userVo);
 
-		Role role = roleDao.findByName(ROLE_USER);
-		roles.add(role);
-		user.setRoles(roles);
+        List<Role> roles = new ArrayList<>();
 
-		user = userDao.save(user);
-		return UserVoMapper.toVo(user);
-	}
+        Role role = roleDao.findByName(ROLE_USER);
+        roles.add(role);
+        user.setRoles(roles);
 
-	@Override
-	public List<UserVo> findAll() {
+        user = userDao.save(user);
+        return UserVoMapper.toVo(user);
+    }
 
-		return UserVoMapper.toVo(userDao.findAll());
-	}
+    @Override
+    public List<UserVo> findAll() {
+        return UserVoMapper.toVo(userDao.findAll());
+    }
 
 }

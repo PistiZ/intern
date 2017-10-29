@@ -9,99 +9,95 @@ import javax.persistence.ManyToMany;
 
 /**
  * Entity implementation class for Entity: User
- *
  */
 @Entity
 public class User extends BaseEntity implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	private String firstName;
-	
-	private String lastName;
-	
-	private String email;
+    private static final long serialVersionUID = 1L;
 
-	private String username;
+    private String firstName;
 
-	private String password;
+    private String lastName;
 
-	public User() {
-		super();
-	}
+    private String email;
 
-	@Lob
-	private byte[] image;
-	
-	private String imageUrl;
-	
-	public String getImageUrl() {
-		return imageUrl;
-	}
+    private String username;
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    private String password;
 
-	@ManyToMany
-	private List<Role> roles;
-	
-	
+    public User() {
+        super();
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    @Lob
+    private byte[] image;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    private String imageUrl;
 
-	public String getLastName() {
-		return lastName;
-	}
+    @ManyToMany
+    private List<Role> roles;
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public List<Role> getRoles() {
-		return roles;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public byte[] getImage() {
-		return image;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }

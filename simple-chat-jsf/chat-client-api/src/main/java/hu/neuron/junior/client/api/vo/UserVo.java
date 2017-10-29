@@ -5,97 +5,109 @@ import java.util.List;
 
 public class UserVo extends BaseVo implements Serializable {
 
-	private static final long serialVersionUID = -5395968745834185014L;
+    private static final long serialVersionUID = -5395968745834185014L;
 
-	private String firstName;
+    private String firstName;
 
-	private String lastName;
+    private String lastName;
 
-	private String email;
+    private String email;
 
-	private String username;
+    private String username;
 
-	private String password;
+    private String password;
 
-	private byte[] image;
-	
-	private String imageUrl;
+    private byte[] image;
 
-	private List<RoleVo> roles;
+    private String imageUrl;
 
-	
-	
-	public String getImageUrl() {
-		return imageUrl;
-	}
+    private Boolean active;
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    private List<RoleVo> roles;
 
-	public String getUsername() {
-		return username;
-	}
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public byte[] getImage() {
-		return image;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public List<RoleVo> getRoles() {
-		return roles;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setRoles(List<RoleVo> roles) {
-		this.roles = roles;
-	}
+    public byte[] getImage() {
+        return image;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public List<RoleVo> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleVo> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

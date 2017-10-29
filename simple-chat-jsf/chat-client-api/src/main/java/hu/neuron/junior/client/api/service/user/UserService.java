@@ -1,14 +1,16 @@
 package hu.neuron.junior.client.api.service.user;
 
-import java.util.List;
-
 import hu.neuron.junior.client.api.vo.UserVo;
+
+import java.util.List;
 
 public interface UserService {
 
-	UserVo findByUsername(String username);
+    UserVo findById(Long id);
 
-	UserVo registrationUser(UserVo userVo);
-	
-	List<UserVo> findAll();
+    UserVo findByUsername(String username);
+
+    UserVo registerUser(UserVo userVo);
+
+    List<UserVo> findAll();
 }

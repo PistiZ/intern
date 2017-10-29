@@ -1,5 +1,7 @@
 package hu.neuron.junior.web.view;
 
+import org.apache.commons.lang3.LocaleUtils;
+
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Locale;
@@ -14,52 +16,53 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class PageView {
 
-	private String locale;
-	private static Map<String, Locale> countries;
-	private static LinkedList<String> countriesList;
+    private static final String HUNGARIAN = "Hungarian";
 
-	@PostConstruct
-	public void init() {
+    private static final String ENGLISH = "English";
 
-		countries = new LinkedHashMap<>();
-		countries.put("English", Locale.ENGLISH);
-		countries.put("Germany", Locale.GERMANY);
+    private static Map<String, Locale> locales;
 
-		countriesList = new LinkedList<String>();
-		countriesList.add("English");
-		countriesList.add("Germany");
+    private static LinkedList<String> countriesList;
 
-	}
+    private String locale;
 
-	public Locale getLocalVar() {
+    @PostConstruct
+    public void init() {
+        locales = new LinkedHashMap<>();
+        locales.put(HUNGARIAN, LocaleUtils.toLocale("hu_HU"));
+        locales.put(ENGLISH, Locale.ENGLISH);
 
-		if (locale != null) {
-			return countries.get(locale);
-		} else {
-			return countries.get("English");
-		}
+        countriesList = new LinkedList<>();
+        countriesList.add(ENGLISH);
+        countriesList.add(HUNGARIAN);
+    }
 
-	}
+    public Locale getLocaleVar() {
+        if (locale != null && locales.containsKey(locale)) {
+            return locales.get(locale);
+        } else {
+            return locales.get(HUNGARIAN);
+        }
+    }
 
-	public void setLocale() {
+    public void setLocale() {
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locales.get(locale));
+    }
 
-		FacesContext.getCurrentInstance().getViewRoot().setLocale((Locale) countries.get(locale));
-	}
+    public String getLocale() {
+        return locale;
+    }
 
-	public String getLocale() {
-		return locale;
-	}
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
 
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
+    public LinkedList<String> getCountriesList() {
+        return countriesList;
+    }
 
-	public LinkedList<String> getCountriesList() {
-		return countriesList;
-	}
-
-	public void setCountriesList(LinkedList<String> countriesList) {
-		PageView.countriesList = countriesList;
-	}
+    public void setCountriesList(LinkedList<String> countriesList) {
+        PageView.countriesList = countriesList;
+    }
 
 }

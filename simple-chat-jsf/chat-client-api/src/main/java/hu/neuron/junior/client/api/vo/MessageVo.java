@@ -1,48 +1,76 @@
 package hu.neuron.junior.client.api.vo;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MessageVo extends BaseVo implements Serializable {
 
-	private static final long serialVersionUID = -5395968745834185014L;
+    private static final long serialVersionUID = -5395968745834185014L;
 
-	private String content;
+    private static final long ONE_DAY_MILLIS = 24 * 60 * 60 * 1000;
 
-	private UserVo fromUser;
+    private static final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
 
-	private UserVo toUser;
+    private static final long ONE_MINUTE_MILLIS = 60 * 1000;
 
-	public String getContent() {
-		return content;
-	}
+    private String content;
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    private UserVo fromUser;
 
-	public UserVo getFromUser() {
-		return fromUser;
-	}
+    private UserVo toUser;
 
-	public void setFromUser(UserVo fromUser) {
-		this.fromUser = fromUser;
-	}
+    public String getFormattedElapsedTime() {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
 
-	public UserVo getToUser() {
-		return toUser;
-	}
+        if (this.getRecDate().before(now)) {
+            long spentMillis = now.getTime() - this.getRecDate().getTime();
 
-	public void setToUser(UserVo toUser) {
-		this.toUser = toUser;
-	}
+            if (spentMillis >= 0 && spentMillis <= ONE_HOUR_MILLIS) {
+                return spentMillis / ONE_MINUTE_MILLIS + " perce";
+            } else if (spentMillis <= ONE_DAY_MILLIS) {
+                return spentMillis / ONE_HOUR_MILLIS + " órája";
+            } else {
+                return spentMillis / ONE_DAY_MILLIS + " napja";
+            }
+        }
 
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
+        return null;
+    }
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public UserVo getFromUser() {
+        return fromUser;
+    }
+
+    public void setFromUser(UserVo fromUser) {
+        this.fromUser = fromUser;
+    }
+
+    public UserVo getToUser() {
+        return toUser;
+    }
+
+    public void setToUser(UserVo toUser) {
+        this.toUser = toUser;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
