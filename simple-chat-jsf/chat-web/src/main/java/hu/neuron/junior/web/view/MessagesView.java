@@ -1,8 +1,9 @@
 package hu.neuron.junior.web.view;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import hu.neuron.junior.client.api.service.message.MessageService;
+import hu.neuron.junior.client.api.service.user.UserService;
+import hu.neuron.junior.client.api.vo.MessageVo;
+import hu.neuron.junior.client.api.vo.UserVo;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -10,11 +11,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-
-import hu.neuron.junior.client.api.service.message.MessageService;
-import hu.neuron.junior.client.api.service.user.UserService;
-import hu.neuron.junior.client.api.vo.MessageVo;
-import hu.neuron.junior.client.api.vo.UserVo;
+import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean(name = "messagesView")
 @ViewScoped
@@ -30,7 +28,6 @@ public class MessagesView {
     private UserVo toUser;
     private String content;
     private String displayName = "username";
-    private Date date;
 
     private List<UserVo> users;
 

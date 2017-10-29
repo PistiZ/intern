@@ -32,8 +32,10 @@ public class ImageServlet extends HttpServlet {
         Long id = Long.valueOf(request.getPathInfo().substring(1));
         UserVo user = userService.findById(id);
 
-        response.setContentType("image/jpeg");
-        response.setContentLength(user.getImage().length);
-        response.getOutputStream().write(user.getImage());
+        if (user.getImage() != null) {
+            response.setContentType("image/jpeg");
+            response.setContentLength(user.getImage().length);
+            response.getOutputStream().write(user.getImage());
+        }
     }
 }

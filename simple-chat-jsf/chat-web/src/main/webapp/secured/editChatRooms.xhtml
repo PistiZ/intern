@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading top-bar">
+                    <div class="col-md-8 col-xs-8">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-plus-sign" />
+                            <h:outputText value="#{out['title.chatRooms']}" />
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <h:form>
+                            <div class="form-group">
+                                <h:outputLabel value="#{out.name}:" for="name" styleClass="control-label col-sm-2" />
+
+                                <div class="col-sm-10">
+                                    <p:inputText id="name" value="#{chatRoomsView.editedChatRoom.name}" required="true" />
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <p:message for="name" />
+                                </div>
+                            </div>
+
+                            <p:commandButton value="#{out.save}"
+                                             actionListener="#{chatRoomsView.saveChatRoom}"
+                                             update="#{p:component('bodyPanel')}" />
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ui:composition>

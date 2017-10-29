@@ -11,6 +11,7 @@
 		<class>hu.neuron.junior.core.entity.Message</class>
 		<class>hu.neuron.junior.core.entity.Role</class>
 		<class>hu.neuron.junior.core.entity.User</class>
+		<class>hu.neuron.junior.core.entity.ChatRoom</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>

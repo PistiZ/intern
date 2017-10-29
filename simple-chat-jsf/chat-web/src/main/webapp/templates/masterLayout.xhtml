@@ -84,6 +84,10 @@
                                     <li class="visible-xs-block #{request.requestURI.toString().contains('/public/users.xhtml') ? 'active ' : ''}">
                                         <p:link href="/public/users.xhtml">#{out.users}</p:link>
                                     </li>
+
+                                    <li class="visible-xs-block #{request.requestURI.toString().contains('/public/chatRoomManager.xhtml') ? 'active ' : ''}">
+                                        <p:link href="/secured/chatRoomManager.xhtml">#{out['title.chatRooms']}</p:link>
+                                    </li>
                                 </ul>
 
                             </div>
@@ -103,6 +107,9 @@
                                 </li>
                                 <li class="#{request.requestURI.toString().contains('/public/users.xhtml') ? 'active ' : ''}">
                                     <p:link href="/public/users.xhtml">#{out.users}</p:link>
+                                </li>
+                                <li class="#{request.requestURI.toString().contains('/public/chatRoomManager.xhtml') ? 'active ' : ''}">
+                                    <p:link href="/secured/chatRoomManager.xhtml">#{out['title.chatRooms']}</p:link>
                                 </li>
                             </ul>
                         </div>
